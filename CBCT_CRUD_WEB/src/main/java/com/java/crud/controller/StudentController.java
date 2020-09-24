@@ -32,19 +32,19 @@ public class StudentController {
         return studentRepository.getStudent();
     }
 
-    @GetMapping(value = "/{studentid}")
-    public ResponseEntity<?> getStudent(@PathVariable("studentid") Integer studentid) {
-        Student student = studentRepository.findById(studentid);
+    @GetMapping(value = "/{student_id}")
+    public ResponseEntity<?> getStudent(@PathVariable("student_id") Integer student_id) {
+        Student student = studentRepository.findById(student_id);
         if (student == null) {
-            return new ResponseEntity<String>("No User found with this "+ studentid, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>("No User found with this "+ student_id, HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<Student>(student, HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<String> createStudent(@RequestBody Student student) throws SQLIntegrityConstraintViolationException {
-        if (studentRepository.findById(student.getStudentid()) != null) {
-            return new ResponseEntity<String>("Duplicate Entry "+ student.getStudentid(), HttpStatus.IM_USED);
+        if (studentRepository.findById(student.getStudent_id()) != null) {
+            return new ResponseEntity<String>("Duplicate Entry "+ student.getStudent_id(), HttpStatus.IM_USED);
         }
         studentRepository.saveStudent(student);
         return ResponseEntity.status(HttpStatus.CREATED).build();
@@ -52,8 +52,8 @@ public class StudentController {
 
     @PutMapping
     public ResponseEntity<?> updateStudent(@RequestBody Student student) {
-        if (studentRepository.findById(student.getStudentid()) == null) {
-            return new ResponseEntity<String>("Unable to update as  Student id " + student.getStudentid() + " not found.",
+        if (studentRepository.findById(student.getStudent_id()) == null) {
+            return new ResponseEntity<String>("Unable to update as  Student id " + student.getStudent_id() + " not found.",
                     HttpStatus.NOT_FOUND);
         }
 
@@ -61,13 +61,13 @@ public class StudentController {
         return new ResponseEntity<Student>(student, HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/{studentid}")
-    public ResponseEntity<?> deleteUser(@PathVariable("studentid") Integer studentid) {
-    	 Student student = studentRepository.findById(studentid);
+    @DeleteMapping(value = "/{student_id}")
+    public ResponseEntity<?> deleteUser(@PathVariable("student_id") Integer student_id) {
+    	 Student student = studentRepository.findById(student_id);
         if (student == null) {
-            return new ResponseEntity<String>("Unable to delete as  Student id " + studentid + " not found.", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>("Unable to delete as  Student id " + student_id + " not found.", HttpStatus.NOT_FOUND);
         }
-        studentRepository.deleteStudentById(studentid);
+        studentRepository.deleteStudentById(student_id);
         return new ResponseEntity<Student>(HttpStatus.NO_CONTENT);
     }
 

@@ -25,13 +25,13 @@ public class StudentRepository {
 
     @SuppressWarnings("unchecked")
 	public List<Student> getStudent(){
-        return  jdbcTemplate.query("select studentno,studentid,studentname,password,academic_year,emailid,school,branch,department from student",new StudentRowMapper());
+        return  jdbcTemplate.query("select student_no,student_id,student_name,password,academic_year,batch_id,email,school,branch,department from student",new StudentRowMapper());
     }
 
     @SuppressWarnings("unchecked")
 	public Student findById(Integer studentid){
 
-        String sql = "SELECT * FROM student WHERE STUDENTID = ?";
+        String sql = "SELECT * FROM student WHERE STUDENT_ID = ?";
         try{
             return  (Student) this.jdbcTemplate.queryForObject(
                     sql, new Object[] { studentid }, new StudentRowMapper());
@@ -43,20 +43,21 @@ public class StudentRepository {
     }
 
     public Boolean saveStudent(Student student){
-        String query="insert into student values(?,?,?,?,?,?,?,?,?)";
+        String query="insert into student values(?,?,?,?,?,?,?,?,?,?)";
         return jdbcTemplate.execute(query,new PreparedStatementCallback<Boolean>(){
             @Override
             public Boolean doInPreparedStatement(PreparedStatement ps)
                     throws SQLException, DataAccessException {
-                ps.setInt(1, student.getStudentno());
-                ps.setInt(2,student.getStudentid());
-                ps.setString(3,student.getStudentname());
+                ps.setInt(1, student.getStudent_no());
+                ps.setInt(2,student.getStudent_id());
+                ps.setString(3,student.getStudent_name());
                 ps.setString(4,student.getPassword());
                 ps.setString(5,student.getAcademic_year());
-                ps.setString(6,student.getEmailid());
-                ps.setString(7,student.getSchool());
-                ps.setString(8,student.getBranch());
-                ps.setString(9,student.getDepartment());
+                ps.setString(6,student.getBatch_id());
+                ps.setString(7,student.getEmail());
+                ps.setString(8,student.getSchool());
+                ps.setString(9,student.getBranch());
+                ps.setString(10,student.getDepartment());
 
                 return ps.execute();
 
@@ -65,14 +66,14 @@ public class StudentRepository {
     }
 
     public Integer updateStudent(Student student){
-        String query="update student set studentno = ?,studentname = ? , password = ? , academic_year = ? , emailid = ? , school = ? , branch = ? , department = ? where studentid = ?";
-        Object[] params = {student.getStudentno(),student.getStudentname() ,student.getPassword(),student.getAcademic_year(),student.getEmailid(),student.getSchool(),student.getBranch(), student.getDepartment(),student.getStudentid()};
-        int[] types = {Types.INTEGER,Types.VARCHAR, Types.VARCHAR,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR,Types.INTEGER};
+        String query="update student set student_no = ?,student_name = ? , password = ? , academic_year = ?, batch_id = ? , email = ? , school = ? , branch = ? , department = ? where student_id = ?";
+        Object[] params = {student.getStudent_no(),student.getStudent_name() ,student.getPassword(),student.getAcademic_year(),student.getBatch_id(),student.getEmail(),student.getSchool(),student.getBranch(), student.getDepartment(),student.getStudent_id()};
+        int[] types = {Types.INTEGER,Types.VARCHAR, Types.VARCHAR,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR,Types.INTEGER};
 
         return jdbcTemplate.update(query, params, types);
     }
 
-    public Integer deleteStudentById(Integer studentid){
-        return jdbcTemplate.update("delete from student where studentid = ?",studentid);
+    public Integer deleteStudentById(Integer student_id){
+        return jdbcTemplate.update("delete from student where student_id = ?",student_id);
     }
 }
