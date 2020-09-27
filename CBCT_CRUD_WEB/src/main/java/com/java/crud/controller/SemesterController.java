@@ -42,7 +42,7 @@ public class SemesterController {
     }
 
     @PostMapping
-    public ResponseEntity<String> createBatch(@RequestBody Semester semester) throws SQLIntegrityConstraintViolationException {
+    public ResponseEntity<String> createSemester(@RequestBody Semester semester) throws SQLIntegrityConstraintViolationException {
         if (semesterRepository.findById(semester.getSemester_id()) != null) {
             return new ResponseEntity<String>("Duplicate Entry "+ semester.getSemester_id(), HttpStatus.IM_USED);
         }
