@@ -15,9 +15,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
  
-/**
- * Created by sadiq.odho on 9/11/2018.
- */
+
 @RestController
 @RequestMapping("/users")
 public class UserController {

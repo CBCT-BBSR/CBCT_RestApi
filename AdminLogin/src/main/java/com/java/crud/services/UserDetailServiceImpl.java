@@ -18,9 +18,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.*;
  
-/**
- * Created by sadiq.odho on 1/31/2019.
- */
+
 @Service
 @Transactional
 public class UserDetailServiceImpl implements UserDetailsService{

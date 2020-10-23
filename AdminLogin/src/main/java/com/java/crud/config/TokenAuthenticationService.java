@@ -11,9 +11,7 @@ import java.util.Date;
  
 import static java.util.Collections.emptyList;
  
-/**
- * Created by sadiq.odho on 9/11/2018.
- */
+
 public class TokenAuthenticationService {
     static final long EXPIRATIONTIME = 864_000_000; // 10 days
     static final String SECRET = "ThisIsASecret";

@@ -4,10 +4,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.Collection;
- 
-/**
- * Created by sadiq.odho on 1/31/2019.
- */
+
 @Entity
 public class Privilege implements java.io.Serializable{
     /**
