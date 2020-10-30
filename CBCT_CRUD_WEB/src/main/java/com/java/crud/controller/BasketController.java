@@ -59,6 +59,14 @@ public class BasketController {
         basketRepository.updateBasket(basket);
         return new ResponseEntity<Basket>(basket, HttpStatus.OK);
     }
+    @DeleteMapping(value = "/{basket_id}")
+    public ResponseEntity<?> deleteBasket(@PathVariable("basket_id") String basket_id) {
+    	Basket basket = basketRepository.findById(basket_id);
+        if (basket == null) {
+            return new ResponseEntity<String>("Unable to delete as Basket Id "+ basket_id, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Basket>(basket, HttpStatus.NO_CONTENT);
+    }
 
 
 }

@@ -52,12 +52,12 @@ public class StudentRepository {
                 ps.setString(2,student.getStudent_name());
                 ps.setInt(3,student.getStudent_id());
                 ps.setString(4,student.getPassword());
-                ps.setString(7,student.getEmail());
-                ps.setString(9,student.getBranch());
-                ps.setString(10,student.getDepartment());
+                ps.setString(5,student.getEmail());
+                ps.setString(6,student.getBranch());
+                ps.setString(7,student.getDepartment());
                 ps.setString(8,student.getSchool());
-                ps.setString(5,student.getAcademic_year());
-                ps.setString(6,student.getBatch_id());
+                ps.setString(9,student.getAcademic_year());
+                ps.setString(10,student.getBatch_id());
                 
              return ps.execute();
 

@@ -31,6 +31,8 @@ public class FacultyController {
     public List<Faculty> getAllFaculties(){
         return facultyRepository.getFaculty();
     }
+    
+  
 
     @GetMapping(value = "/{facultyid}")
     public ResponseEntity<?> getFaculty(@PathVariable("facultyid") Integer facultyid) {

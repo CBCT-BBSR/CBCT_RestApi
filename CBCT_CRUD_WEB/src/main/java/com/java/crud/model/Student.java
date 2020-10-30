@@ -3,28 +3,21 @@ package com.java.crud.model;
 public class Student {
 
     int student_no;
+	int student_id;
+    String student_name;
+    String password;
+    String academic_year;
+    String batch_id;
+	String email;
+    String school;
+    String branch;
+    String department;
     public int getStudent_no() {
 		return student_no;
 	}
 	public void setStudent_no(int student_no) {
 		this.student_no = student_no;
 	}
-	int student_id;
-    String student_name;
-    String password;
-    String academic_year;
-    String batch_id;
-    
-    public String getBatch_id() {
-		return batch_id;
-	}
-	public void setBatch_id(String batch_id) {
-		this.batch_id = batch_id;
-	}
-	String email;
-    String school;
-    String branch;
-    String department;
 	public int getStudent_id() {
 		return student_id;
 	}
@@ -48,6 +41,12 @@ public class Student {
 	}
 	public void setAcademic_year(String academic_year) {
 		this.academic_year = academic_year;
+	}
+	public String getBatch_id() {
+		return batch_id;
+	}
+	public void setBatch_id(String batch_id) {
+		this.batch_id = batch_id;
 	}
 	public String getEmail() {
 		return email;
